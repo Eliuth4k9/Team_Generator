@@ -1,9 +1,9 @@
 const inquirer = require("inquirer");
-const writeRender = require('./render');
+const writeRender = require('./writeRender');
 const Engineer = require("./lib/engineer.js");
 const Intern = require("./lib/intern.js");
 const Manager = require("./lib/manager.js");
-var userId = Math.floor(Math.random() * 4000);
+var userId = Math.floor(Math.random() * 7000);
 var teamArray = [];
 
 
