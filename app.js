@@ -3,7 +3,8 @@ const writeRender = require('./writeRender');
 const Engineer = require("./lib/engineer.js");
 const Intern = require("./lib/intern.js");
 const Manager = require("./lib/manager.js");
-var userId = Math.floor(Math.random() * 7000);
+const generateHTML = require('./htmlDoc');
+let userId = Math.floor(Math.random() * 7000);
 var teamArray = [];
 
 
@@ -119,9 +120,11 @@ function promptUser() {
         });
         
     }
+   
        
-    function generateHTML() {
-        writeRender(teamArray);
+    function testOne() {
+        // writeRender(teamArray);
+        generateHTML(teamArray);
     
 };
 
@@ -133,7 +136,7 @@ function addUser(){
             type: "confirm"
         }
     ]).then(function(confirmRes){
-        confirmRes.continue ? promptUser() : generateHTML()
+        confirmRes.continue ? promptUser() : testOne()
     })
 };
 
