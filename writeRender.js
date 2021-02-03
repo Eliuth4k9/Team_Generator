@@ -16,7 +16,7 @@ function writeRender(employee) {
     }
     console.log('hello parsed is', parsed);
     writeFile('./buildHTML.HTML', parsed, 'utf8', function (err) {
-        if (err) console.log('error');
+        if (err) console.log('error', err);
     })
 }
 module.exports = writeRender

@@ -4,7 +4,7 @@ const Engineer = require("./lib/engineer.js");
 const Intern = require("./lib/intern.js");
 const Manager = require("./lib/manager.js");
 const generateHTML = require('./htmlDoc');
-let userId = Math.floor(Math.random() * 7000);
+let userId = ()=> Math.floor(Math.random() * 7000);
 var teamArray = [];
 
 
@@ -35,7 +35,7 @@ function promptUser() {
             
             default:
                 
-                generateHTML();
+                generateHTML(teamArray);
         }
     }) 
 
@@ -58,8 +58,8 @@ function promptUser() {
                 message: "What is your email?"
             }
         ]).then(function (engineerRes) {
-            var newEngineer = new Engineer(engineerRes.name, engineerRes.email, userId, engineerRes.github);
-            userId = userId + 2; 
+            var newEngineer = new Engineer(engineerRes.name, engineerRes.email, userId(), engineerRes.github);
+            
             console.log(newEngineer);
             teamArray.push(newEngineer);
             addUser();
@@ -86,8 +86,8 @@ function promptUser() {
                 message: "What college did you graduate from?"
             }
         ]).then(function (internRes) {
-            var newIntern = new Intern(internRes.name, internRes.email, userId, internRes.school);
-            userId = userId + 3; 
+            var newIntern = new Intern(internRes.name, internRes.email, userId(), internRes.school);
+             
             console.log(newIntern)
             teamArray.push(newIntern);
             addUser();
@@ -112,8 +112,8 @@ function promptUser() {
                 message: "What is your office number?"
             }
         ]).then(function (managerRes) {
-            var newManager = new Manager(managerRes.name, managerRes.email, userId, managerRes.office);
-            userId = userId + 5;
+            var newManager = new Manager(managerRes.name, managerRes.email, userId(), managerRes.office);
+        
             console.log(newManager);
             teamArray.push(newManager);
             addUser();

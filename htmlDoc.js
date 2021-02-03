@@ -4,11 +4,11 @@ const {writeFile, write} = require('fs');
 function  generateHTML(array) {
     // console.log('this is the array', array);  
     
-const employeeCards = []
+let employeeCards = ``
     //blank empty canvas to throw in
     for (i = 0; i <array.length; i++) {
         //pussh the return of the function into the array
-       createCards(array[i]);
+       employeeCards = employeeCards + createCards(array[i]);
         
     
     }
@@ -30,9 +30,10 @@ const webHTML =
 
 //write file to hmtl
 
-writeFile("_index.html", webHTML, (err) =>
-console.log("error in writingfile: ", err)
-);
+writeFile("./index.html", webHTML, (err) => {
+    if (err) console.log("error in writingfile: ", err)
+
+});
   
 }
 function createCards(employee) {
