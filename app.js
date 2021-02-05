@@ -4,42 +4,44 @@ const Engineer = require("./lib/engineer.js");
 const Intern = require("./lib/intern.js");
 const Manager = require("./lib/manager.js");
 const generateHTML = require('./htmlDoc');
-let userId = ()=> Math.floor(Math.random() * 7000);
+let userId = ()=> Math.floor(Math.random() * 5050);
+let officeNum = ()=>Math.floor(Math.random() * 8500);
 var teamArray = [];
 
 
-function promptUser() {
+    function promptUser() {
 
-     inquirer.prompt([
-        {
-            type: "list",
-            name: "position",
-            message: "what is your position?",
-            choices: ["Engineer", "Intern", "Manager"]
-        },
-    ]).then(res => {
-       
-        switch (res.position) {
-            
-            case "Engineer":
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "position",
+                message: "what is your position?",
+                choices: ["Engineer", "Intern", "Manager"]
+            },
+        ]).then(res => {
+        
+            switch (res.position) {
                 
-                return addEngineer();
-            
-            case "Intern":
+                case "Engineer":
+                    
+                    return addEngineer();
                 
-                return addIntern();
+                case "Intern":
+                    
+                    return addIntern();
 
-            case "Manager":
+                case "Manager":
 
-                return addManager();
-            
-            default:
+                    return addManager();
                 
-                generateHTML(teamArray);
-        }
-    }) 
+                default:
+                    
+                    generateHTML(teamArray);
+            }
+        }) 
 
-}
+    }
+
     function addEngineer(){
         inquirer.prompt([
             {
@@ -58,7 +60,7 @@ function promptUser() {
                 message: "What is your email?"
             }
         ]).then(function (engineerRes) {
-            var newEngineer = new Engineer(engineerRes.name, engineerRes.email, userId(), engineerRes.github);
+            var newEngineer = new Engineer(engineerRes.name, engineerRes.email, userId(), engineerRes.github, officeNum());
             
             console.log(newEngineer);
             teamArray.push(newEngineer);
@@ -84,9 +86,14 @@ function promptUser() {
                 name: "school",
                 type: "input",
                 message: "What college did you graduate from?"
+            },
+            {
+                name: "github",
+                type: "input",
+                message: "What is your github Username?"
             }
         ]).then(function (internRes) {
-            var newIntern = new Intern(internRes.name, internRes.email, userId(), internRes.school);
+            var newIntern = new Intern(internRes.name, internRes.email, userId(),internRes.school, internRes.github, officeNum());
              
             console.log(newIntern)
             teamArray.push(newIntern);
@@ -107,12 +114,13 @@ function promptUser() {
                 message: "What is your email?"
             },
             {
-                name: "office",
+                name: "github",
                 type: "input",
-                message: "What is your office number?"
-            }
+                message: "What is your github Username?"
+            },
+
         ]).then(function (managerRes) {
-            var newManager = new Manager(managerRes.name, managerRes.email, userId(), managerRes.office);
+            var newManager = new Manager(managerRes.name, managerRes.email, userId(),officeNum(), managerRes.github);
         
             console.log(newManager);
             teamArray.push(newManager);
@@ -120,10 +128,9 @@ function promptUser() {
         });
         
     }
-   
-       
-    function testOne() {
-        // writeRender(teamArray);
+    
+    function buildHTML() {
+        
         generateHTML(teamArray);
     
 };
@@ -136,7 +143,7 @@ function addUser(){
             type: "confirm"
         }
     ]).then(function(confirmRes){
-        confirmRes.continue ? promptUser() : testOne()
+        confirmRes.continue ? promptUser() : buildHTML()
     })
 };
 
