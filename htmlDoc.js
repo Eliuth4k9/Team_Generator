@@ -52,16 +52,20 @@ let employeeCards = ``
     function createCards(employee) {
         console.log("employee card", employee);
         return(`
-            <div class="card" style="width: 18rem;"> 
-                <div class="card-body">
-                <h2 class="card-title"> &#128372; ${employee.name}</h2>
-                <h3 class="card-subtitle mb-2 text-muted"> Role: ${employee.position}</h3>
-                <h4 class="card-text">ID:  ${employee.id}</h4>
-                <h4 class="card-text"> Office Number: ${employee.office}</h4>
-                <h4 class="card-text"> Email: ${employee.email}</h4>
-                <h4 class="card-text"> Github: ${employee.github}</h4>
-                </div>
-            </div>
+        <div class="card" style="width: 18rem;"> 
+        <div class="card-body">
+        <h2 class="card-title"> &#128372; ${employee.name}</h2>
+        <h3 class="card-subtitle mb-2 text-muted"> Role: ${employee.position}</h3>
+        <h4 class="card-text">ID:  ${employee.id}</h4>
+        <h4 class="card-text"> Email: ${employee.email}</h4>
+        ${  
+        employee.github &&`<h4 class="card-text">Github: ${employee.github}</h4>`
+            || employee.office && `<h4 class="card-text">Office Number: ${employee.office}</h4>` 
+            || employee.school && `<h4 class="card-text">School: ${employee.school}</h4>`
+          }
+        </div>
+    </div>
         `) 
 }
 module.exports = generateHTML
+

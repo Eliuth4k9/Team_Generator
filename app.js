@@ -60,7 +60,7 @@ var teamArray = [];
                 message: "What is your email?"
             }
         ]).then(function (engineerRes) {
-            var newEngineer = new Engineer(engineerRes.name, engineerRes.email, userId(), engineerRes.github, officeNum());
+            var newEngineer = new Engineer(engineerRes.name, engineerRes.email, userId(), engineerRes.github);
             
             console.log(newEngineer);
             teamArray.push(newEngineer);
@@ -86,14 +86,9 @@ var teamArray = [];
                 name: "school",
                 type: "input",
                 message: "What college did you graduate from?"
-            },
-            {
-                name: "github",
-                type: "input",
-                message: "What is your github Username?"
             }
         ]).then(function (internRes) {
-            var newIntern = new Intern(internRes.name, internRes.email, userId(),internRes.school, internRes.github, officeNum());
+            var newIntern = new Intern(internRes.name, internRes.email, userId(),internRes.school);
              
             console.log(newIntern)
             teamArray.push(newIntern);
@@ -112,15 +107,9 @@ var teamArray = [];
                 name: "email",
                 type: "input",
                 message: "What is your email?"
-            },
-            {
-                name: "github",
-                type: "input",
-                message: "What is your github Username?"
-            },
-
+            }
         ]).then(function (managerRes) {
-            var newManager = new Manager(managerRes.name, managerRes.email, userId(),officeNum(), managerRes.github);
+            var newManager = new Manager(managerRes.name, managerRes.email, userId(),officeNum());
         
             console.log(newManager);
             teamArray.push(newManager);
