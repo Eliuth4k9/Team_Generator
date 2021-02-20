@@ -1,6 +1,6 @@
 
 const Employee = require("../lib/employee");
-// let userId = ()=> Math.floor(Math.random() * 5050);
+let userId = ()=> Math.floor(Math.random() * 5050);
 describe("Employee", () => {
   describe("createEmployee", () => {
     it("recognize a new employee object was added ", () => {
